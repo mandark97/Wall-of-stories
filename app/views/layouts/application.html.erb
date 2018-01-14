@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Untitled1</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Untitled1</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  </head>
+<body>
+<% if user_signed_in? %>
+  <aside class="js-sideToggle">
+  </aside>
 
-  <body>
+  <main class="js-mainToggle">
+    <%= render partial: 'layouts/header' %>
+
+    <%= yield :header %>
     <%= yield %>
-  </body>
+  </main>
+<% else %>
+  <div class="container-color" style="min-height: 100vh;">
+    <div class="mx-auto ie-va-fix">
+      <div class="pt-0 pb-5">
+      </div>
+      <%= content_tag :div, alert, class: 'alert alert-warning' unless alert.nil? %>
+      <%= content_tag :div, notice, class: 'alert alert-warning' unless notice.nil? %>
+      <div class="card card-w-30 card-transparent text-secondary m-auto col-md-3">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</body>
 </html>

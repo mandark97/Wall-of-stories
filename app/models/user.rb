@@ -9,4 +9,12 @@ class User < ApplicationRecord
   has_many :friends, through: :friend_connections
 
   has_many :albums
+
+  def full_name
+    if user_profile
+      user_profile&.first_name + ' ' + user_profile&.last_name
+    else
+      email
+    end
+  end
 end

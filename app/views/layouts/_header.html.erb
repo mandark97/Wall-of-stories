@@ -1,0 +1,23 @@
+<header class="sticky-top" style="background-color: #4A266A">
+  <nav class="navbar navbar-expand-lg p-0">
+
+    <%= link_to 'Facebook', stories_path, class: 'btn btn-default' %>
+    <%= link_to 'Profile', user_profile_path(current_user), class: 'btn btn-default' %>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav w-100 px-3">
+        <div class="ml-auto d-inline-flex">
+          <!-- <%# <p class="btn btn-navs"><%= current_user.full_name %></p> %> -->
+          <%= link_to edit_user_registration_path, wrap_tag: :li, wrap_class: 'nav-item py-2', class: 'btn btn-navs' do %>
+            <i class="ion ion-android-settings pr-2"></i><%= current_user.email %>
+          <% end %>
+
+          <%= link_to destroy_user_session_path, method: :delete,
+                      wrap_tag: :li, wrap_class: 'nav-item py-2', class: 'btn btn-navs' do %>
+            <i class="ion ion-log-out pr-2"></i>
+            Log out
+          <% end %>
+        </div>
+      </ul>
+    </div>
+  </nav>
+</header>

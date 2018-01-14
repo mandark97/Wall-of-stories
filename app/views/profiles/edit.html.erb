@@ -1,0 +1,24 @@
+<%= form_for @user_profile, url: user_profile_path(@user), html: { class: 'form-group' } do |f| %>
+  <div class="form-group">
+    <%= f.label 'First Name' %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Last Name' %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Description' %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label 'Photo' %>
+    <%= f.file_field :photo, class: 'form-control' %>
+  </div>
+
+  <%= f.submit "Sign up", class: 'btn btn-lg btn-block btn-primary text-uppercase font-weight-semibold mt-3' %>
+<% end %>
