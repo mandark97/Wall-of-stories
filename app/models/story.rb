@@ -13,7 +13,7 @@
 
 class Story < ApplicationRecord
   belongs_to :album
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   enum type: { text: 1, image: 2 }
 end

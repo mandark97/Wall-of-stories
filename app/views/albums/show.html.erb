@@ -1,0 +1,8 @@
+<%= @album.name %>
+<% if policy(@album).can_edit? %>
+  <%=link_to 'edit', edit_user_album_path(@user, @album) %>
+  <%=link_to 'delete', user_album_path(@user, @album), method: :delete %>
+<% end%>
+<% @album.stories.each do |story| %>
+  <%= story.text %>
+<% end %>

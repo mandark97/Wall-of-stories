@@ -15,10 +15,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resource :profile
+    resources :albums
   end
   resources :stories do
     resources :comments
   end
+
 
   resources :friends
 end

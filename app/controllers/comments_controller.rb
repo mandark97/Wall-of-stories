@@ -18,6 +18,15 @@ class CommentsController < ApplicationController
       format.js
     end
   end
+
+  def destroy
+    comment = Comment.find(params[:id])
+    comment.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
   def comments_params
     params.require(:comment).permit(:text)

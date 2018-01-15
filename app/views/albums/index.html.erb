@@ -1,0 +1,5 @@
+<% @albums.each do |album| %>
+  <%= link_to user_album_path(@user, album) do %>
+    <%= album.name %>
+  <% end %>
+<% end %>

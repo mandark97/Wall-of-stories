@@ -10,7 +10,6 @@ class StoriesController < ApplicationController
   end
 
   def create
-    binding.pry
     Story.create!(story_params)
 
     redirect_to stories_path

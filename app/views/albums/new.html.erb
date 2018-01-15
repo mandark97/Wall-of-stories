@@ -1,0 +1,7 @@
+<%= form_for Album.new, url: user_albums_path(current_user), html: { class: 'form-group' } do |f| %>
+  <div class="form-group">
+    <%= f.label 'Album name' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+<% end %>

@@ -1,6 +1,10 @@
 <div class="comments">
 
-    <% @story.comments.order(created_at: :desc).each do |comment| %>
-      <%= comment.text %>
+  <% @story.comments.order(created_at: :desc).each do |comment| %>
+    <%= comment.text %>
+    <% if policy(comment).can_edit? %>
+      <%= link_to 'delete comment', story_comment_path(@story, comment), method: :delete, class: 'btn btn-danger' %>
     <% end %>
+    <hr/>
+  <% end %>
 </div>

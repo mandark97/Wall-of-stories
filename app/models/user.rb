@@ -24,19 +24,27 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :user_profile
+  has_one :user_profile, dependent: :destroy
   has_many :friend_connections
   has_many :friends, through: :friend_connections
 
-  has_many :albums
+  has_many :albums, dependent: :destroy
 
   after_create :create_default_album
+  after_destroy :delele_friendships
+
   def full_name
     if user_profile
       user_profile&.first_name + ' ' + user_profile&.last_name
     else
       email
     end
+  end
+
+  private
+  def delele_friendships
+    FriendConnection.where(user: self).destroy_all
+    FriendConnection.where(friend: self).destroy_all
   end
 
   private
