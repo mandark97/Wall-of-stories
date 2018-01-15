@@ -16,14 +16,9 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resource :profile
   end
-  resources :stories
-
-  resources :albums do
-    resources :stories do
-      resources :comments
-    end
+  resources :stories do
+    resources :comments
   end
-
 
   resources :friends
 end

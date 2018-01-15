@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :get_user
+  before_action :authenticate_user!
 
   def new
   end

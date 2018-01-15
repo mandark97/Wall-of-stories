@@ -1,1 +1,7 @@
-stories index
+<%= render 'new' %>
+<hr/>
+<% @stories.each do |story| %>
+  <%= link_to story_path(story) do %>
+  <%= story.text %>
+    <% end%>
+<% end %>

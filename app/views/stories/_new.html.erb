@@ -1,0 +1,19 @@
+<%= form_for Story.new, url: stories_path, html: { class: 'form-group' } do |f| %>
+  <div class="form-group">
+    <%= f.label 'Description' %>
+    <%= f.text_field :text, class: 'form-control' %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label 'Photo' %>
+    <%= f.file_field :photo, class: 'form-control' %>
+  </div>
+
+  <div class="form-group col-md-6">
+    <%= f.label 'Album' %>
+    <%= f.select :album_id, current_user.albums.map { |album| [album.name, album.id] }, {}, { class: "form-control custom-select" } %>
+  </div>
+  <%= f.submit "Add Story", class: 'btn btn-primary text-uppercase font-weight-semibold' %>
+
+<% end %>

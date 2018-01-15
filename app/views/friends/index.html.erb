@@ -1,4 +1,18 @@
 <%= render 'new' %>
+<%= link_to 'My friends', friends_path(friends: 'true'), class: 'btn btn-danger' %>
+<%= link_to 'Friend requests', friends_path(requests: 'true'), class: 'btn btn-danger' %>
 <% @friends.each do |friend| %>
-  <%= friend.full_name %>
+  <%= link_to user_profile_path(friend) do %>
+    <%= friend.full_name %>
+  <% end %>
+  <% if policy(friend).friend? %>
+    <%= link_to 'Delete friend', friend_path(friend), method: :delete, class: 'btn btn-danger' %>
+  <% elsif policy(friend).friend_pending? %>
+    <%= link_to 'Accept', friends_path(friend_id: friend), method: :post, class: 'btn btn-success' %>
+    <%= link_to 'Delete friend', friend_path(friend), method: :delete, class: 'btn btn-danger' %>
+  <% else %>
+    <%= link_to 'Add Friend', new_friend_path(friend_id: friend.id), class: 'btn btn-success' %>
+  <% end %>
+
+  <br/>
 <% end %>

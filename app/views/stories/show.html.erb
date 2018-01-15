@@ -1,0 +1,6 @@
+<%= @story.text %>
+<%= link_to 'Edit', edit_story_path(@story), class: 'btn btn-default' %>
+<%= link_to 'Delete', story_path(@story), method: :delete, class: 'btn btn-danger'%>
+<%= render 'comments/new' %>
+
+<%= render 'comments/index'%>

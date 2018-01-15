@@ -1,0 +1,6 @@
+<div class="comments">
+
+    <% @story.comments.order(created_at: :desc).each do |comment| %>
+      <%= comment.text %>
+    <% end %>
+</div>

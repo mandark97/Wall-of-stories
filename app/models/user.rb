@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  admin                  :boolean          default(FALSE)
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,11 +30,17 @@ class User < ApplicationRecord
 
   has_many :albums
 
+  after_create :create_default_album
   def full_name
     if user_profile
       user_profile&.first_name + ' ' + user_profile&.last_name
     else
       email
     end
+  end
+
+  private
+  def create_default_album
+    albums << Album.create(name: 'Default')
   end
 end

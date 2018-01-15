@@ -40,6 +40,7 @@ gem 'font-ionicons-rails'
 gem 'devise'
 gem 'pundit'
 gem 'carrierwave'
+gem 'annotate'
 gem 'turbolinks', '~> 5'
 
 group :development, :test do
