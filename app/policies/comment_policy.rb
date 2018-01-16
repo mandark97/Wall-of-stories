@@ -7,9 +7,9 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def can_edit?
-    true if user.admin?
-    true if comment.in? Comment.joins(story: [album: [:user]]).where('users.id': user.id)
-    true if comment.user_id == user.id
+    return true if user.admin?
+    return true if comment.in? Comment.joins(story: [album: [:user]]).where('users.id': user.id)
+    return true if comment.user_id == user.id
 
     false
   end

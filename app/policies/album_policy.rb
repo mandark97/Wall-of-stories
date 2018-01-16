@@ -7,7 +7,7 @@ class AlbumPolicy < ApplicationPolicy
   end
 
   def can_edit?
-    true if user.admin?
+    return true if user.admin?
     album.in? user.albums
   end
 
