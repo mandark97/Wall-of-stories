@@ -3,7 +3,8 @@ class StoriesController < ApplicationController
   before_action :find_story, only: [:show, :edit, :update, :destroy]
 
   def index
-    @stories = Story.joins(album: [user: [:friend_connections]]).where('friend_connections.friend_id': current_user.friends.pluck(:id))
+    my_stories = Story.joins(album:[:user]).where('users.id':1)
+    @stories = my_stories + Story.joins(album: [user: [:friend_connections]]).where('friend_connections.friend_id': current_user.friends.pluck(:id))
   end
 
   def new

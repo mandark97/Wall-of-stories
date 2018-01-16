@@ -8,7 +8,7 @@ class StoryPolicy < ApplicationPolicy
 
   def can_edit?
     true if user.admin?
-    true if story.in? user.albums.map(&:stories)
+    true if story.in? Story.joins(album: [:user]).where('users.id': user.id)
 
     false
   end
